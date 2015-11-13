@@ -9,8 +9,13 @@ chessboard = json.load(open("../common/initial_state.json"))
 image_dir = "../res/basic_chess_pieces/"
 rules = imp.load_source('chess_basic_rules','../common/rules.py')
 cpu = imp.load_source('chess_minimax_ai','../ai/cpu.py')
+<<<<<<< HEAD
 
 
+=======
+helper = imp.load_source('helper_functions','../common/helper_functions.py')
+
+>>>>>>> b8a2f02eb9771dd5b66fcae0fe53a382db103934
 opposite = { "white" : "black" , "black" : "white" } 
 
 
@@ -116,11 +121,17 @@ def looping_cpu_vs_human(board,size):
 				 for x in ['white','black']:
 					for k in board[x].keys():
 						if board[x][k][1] == old_x and board[x][k][0] == old_y:
+<<<<<<< HEAD
 							#print k
 							if "bishop" in k:
 								if [new_y,new_x] in rules.legal_bishop_moves(board,x,k): valid = True
 							elif "pawn" in k:
 								#print "hey"
+=======
+							if "bishop" in k:
+								if [new_y,new_x] in rules.legal_bishop_moves(board,x,k): valid = True
+							elif "pawn" in k:
+>>>>>>> b8a2f02eb9771dd5b66fcae0fe53a382db103934
 								if [new_y,new_x] in rules.legal_pawn_moves(board,x,k):   valid = True
 							elif "knight" in k:
 								if [new_y,new_x] in rules.legal_knight_moves(board,x,k): valid = True
@@ -129,10 +140,18 @@ def looping_cpu_vs_human(board,size):
 							elif "queen" in k:
 								if [new_y,new_x] in rules.legal_queen_moves(board,x,k):  valid = True
 							elif "king" in k:
+<<<<<<< HEAD
 								if [new_y,new_x] in rules.legal_king_moves( board,x,k): valid = True
 
 
 							if valid and x == "white":
+=======
+								if [new_y,new_x] in rules.legal_king_moves(board,x,k): valid = True
+
+
+							if valid and x == "white":
+								print board
+>>>>>>> b8a2f02eb9771dd5b66fcae0fe53a382db103934
 								board[x][k][1] = new_x
 								board[x][k][0] = new_y
 								killed_piece = None
@@ -145,6 +164,7 @@ def looping_cpu_vs_human(board,size):
 													
 														
 								draw_chessboard(board,size)
+<<<<<<< HEAD
 								move = cpu.minimax(board,opposite[x],1)
 								board = cpu.generate_board(board,move)
 								draw_chessboard(board,size)
@@ -153,14 +173,31 @@ def looping_cpu_vs_human(board,size):
 
 				 
 
+=======
+								move = cpu.minimax(board,opposite[x],1) ##depth is 1 
+								board = helper.generate_board(board,move)
+								draw_chessboard(board,size)
+								break #Break here is necessary since we are deleting a key from the map on which we are iterating
+							 
+				 
+
+				 
+
+>>>>>>> b8a2f02eb9771dd5b66fcae0fe53a382db103934
 def looping_cpu_vs_cpu(board,size):
 	draw_chessboard(board,size)
 	color = "white"
 	print board
 	while True:
+<<<<<<< HEAD
 		move = cpu.minimax(board,color,1)
 		board = cpu.generate_board(board,move)
 		color = cpu.opposite[color]
+=======
+		move = cpu.minimax(board,color,1)#depth is 1
+		board = helper.generate_board(board,move)
+		color = opposite[color]
+>>>>>>> b8a2f02eb9771dd5b66fcae0fe53a382db103934
 		draw_chessboard(board,size)
 	
 		
@@ -169,5 +206,10 @@ def looping_cpu_vs_cpu(board,size):
 
 
 ##main loop ... 
+<<<<<<< HEAD
 looping_cpu_vs_human( chessboard,600)
 #ooping_cpu( chessboard,600)
+=======
+#looping_cpu_vs_human( chessboard,600)
+looping_cpu_vs_cpu( chessboard,600)
+>>>>>>> b8a2f02eb9771dd5b66fcae0fe53a382db103934
